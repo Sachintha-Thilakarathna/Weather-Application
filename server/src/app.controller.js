@@ -12,4 +12,9 @@ export class AppController {
   getHello() {
     return this.appService.getHello();
   }
+
+  @Get('api/cities')
+  getCities() {
+    return this.appService.getCities();
+  }
 }
