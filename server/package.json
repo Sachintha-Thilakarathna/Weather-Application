@@ -14,14 +14,20 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/axios": "^12.0.0",
+    "@nestjs/cache-manager": "^12.0.0",
     "@nestjs/common": "^11.0.1",
+    "@nestjs/config": "^12.0.0",
     "@nestjs/core": "^11.0.1",
+    "@nestjs/jwt": "^12.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "axios": "^1.20.0",
+    "cache-manager": "^7.2.9",
+    "nodemailer": "^9.1.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
-    "@nestjs/testing": "^11.0.1",
     "@babel/core": "7.29.0",
     "@babel/node": "7.29.0",
     "@babel/plugin-proposal-decorators": "7.29.0",
@@ -29,6 +35,8 @@
     "@babel/preset-env": "7.29.2",
     "@babel/register": "7.28.6",
     "@babel/runtime": "7.29.2",
+    "@nestjs/testing": "^11.0.1",
+    "babel-jest": "^30.5.1",
     "jest": "30.3.0",
     "nodemon": "3.1.14",
     "prettier": "3.8.3",
@@ -41,6 +49,12 @@
     ],
     "rootDir": "src",
     "testRegex": ".spec.js$",
+    "transform": {
+      "^.+\\.[jt]s$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(?:@nestjs)/)"
+    ],
     "coverageDirectory": "../coverage"
   }
 }

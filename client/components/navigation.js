@@ -1,5 +1,6 @@
 // components/DashboardHeader.js
-import ThemeToggle from '../components/themeToggle';
+import ThemeToggle from './themeToggle';
+import LogoutButton from './logoutbutton';
 
 export default function DashboardHeader({ generatedAt }) {
   const time = generatedAt
@@ -9,17 +10,21 @@ export default function DashboardHeader({ generatedAt }) {
   return (
     <header className="flex items-start justify-between mb-8">
       <div>
-        <h1 className="font-mono text-4xl uppercase tracking-wider  dark:text-[#ffffff] mb-1">
+        <p className="font-mono text-xs uppercase tracking-wider text-ink-muted dark:text-[#9aa6b5] mb-1">
           Weather Analytics
-        </h1>
-        <p className="font-display text-ink-muted font-bold text-2xl">Comfort Index</p>
+        </p>
+        <h1 className="font-display font-bold text-4xl">Comfort Index</h1>
         {time && (
           <p className="font-mono text-sm text-ink-muted dark:text-[#9aa6b5] mt-2">
             Readings updated {time}
           </p>
         )}
       </div>
-      <ThemeToggle />
+
+      <div className="flex items-center gap-3">
+        <LogoutButton />
+        <ThemeToggle />
+      </div>
     </header>
   );
 }

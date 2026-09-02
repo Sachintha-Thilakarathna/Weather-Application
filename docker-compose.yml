@@ -1,0 +1,40 @@
+services:
+  server:
+    build:
+      context: ./server
+    container_name: weather-server
+    ports:
+      - "${SERVER_PORT:-3001}:3001"
+    environment:
+      PORT: 3001
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-production}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+    restart: unless-stopped
+    networks:
+      - weather-net
+
+  client:
+    build:
+      context: ./client
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://server:3001/api/cities}
+    container_name: weather-client
+    depends_on:
+      - server
+    ports:
+      - "${CLIENT_PORT:-3000}:3000"
+    environment:
+      PORT: 3000
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+      NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-http://server:3001/api/cities}
+    restart: unless-stopped
+    networks:
+      - weather-net
+
+networks:
+  weather-net:
+    driver: bridge

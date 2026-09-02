@@ -14,7 +14,7 @@ export default function CityCard({ city }) {
         <h3 className="font-display font-bold text-xl">{cityName}</h3>
         <p className="text-sm capitalize text-ink-muted dark:text-[#9aa6b5]">{description}</p>
         <p className="font-mono text-2xl font-semibold mt-1">
-          {temperature.toFixed(1)}
+          {temperature}
           <span className="text-base text-ink-muted dark:text-[#9aa6b5]">°C</span>
         </p>
       </div>

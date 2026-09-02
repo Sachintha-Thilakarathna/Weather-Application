@@ -1,0 +1,13 @@
+[
+  { "CityCode": 1248991, "name": "Colombo" },
+  { "CityCode": 2643743, "name": "London" },
+  { "CityCode": 5128581, "name": "New York" },
+  { "CityCode": 2988507, "name": "Paris" },
+  { "CityCode": 1850147, "name": "Tokyo" },
+  { "CityCode": 1880252, "name": "Singapore" },
+  { "CityCode": 292223,  "name": "Dubai" },
+  { "CityCode": 2147714, "name": "Sydney" },
+  { "CityCode": 1275339, "name": "Mumbai" },
+  { "CityCode": 2950159, "name": "Berlin" },
+  { "CityCode":1796236, "name":"Shanghai"}
+]

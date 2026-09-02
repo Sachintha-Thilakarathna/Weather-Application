@@ -5,7 +5,7 @@ import CityCard from './citycard';
 import SortFilterBar from './searchbar';
 import EmptyState from './searchempty';
 
-export default function CityGrid({ cities }) {
+export default function CityGrid({ cities, serverDown = false }) {
   const [ query, setQuery] = useState('');
   const [sortBy, setSortBy] = useState('comfort');
 
@@ -15,8 +15,8 @@ export default function CityGrid({ cities }) {
     );
 
     return [...filtered].sort((a, b) => {
-      if (sortBy === 'comfort') return b.comfortIndex - a.comfortIndex;
-      if (sortBy === 'temp') return b.temperature - a.temperature;
+      if (sortBy === 'comfort') return a.comfortIndex - b.comfortIndex;
+      if (sortBy === 'temp') return a.temperature - b.temperature;
       return a.cityName.localeCompare(b.cityName);
     });
   }, [cities, query, sortBy]);
@@ -31,7 +31,7 @@ export default function CityGrid({ cities }) {
       />
 
       {visible.length === 0 ? (
-        <EmptyState query={query} />
+        <EmptyState serverDown={serverDown} />
       ) : (
         <div className="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-4">
           {visible.map((city) => (

@@ -6,9 +6,14 @@ describe('AppController', () => {
   let appController;
 
   beforeEach(async () => {
+    const mockAppService = {
+      getHello: () => 'Hello World!',
+      getCities: () => ({ cities: [] }),
+    };
+
     const app = await Test.createTestingModule({
       controllers: [AppController],
-      providers: [AppService],
+      providers: [{ provide: AppService, useValue: mockAppService }],
     }).compile();
 
     appController = app.get(AppController);

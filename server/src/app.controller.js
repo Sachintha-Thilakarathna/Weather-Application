@@ -1,20 +1,21 @@
-import { Controller, Dependencies, Get } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
-@Dependencies(AppService)
 export class AppController {
   constructor(appService) {
     this.appService = appService;
   }
 
-  @Get()
   getHello() {
     return this.appService.getHello();
   }
 
-  @Get('api/cities')
   getCities() {
     return this.appService.getCities();
   }
 }
+
+Controller()(AppController);
+Get()(AppController.prototype, 'getHello', Object.getOwnPropertyDescriptor(AppController.prototype, 'getHello'));
+Get('api/cities')(AppController.prototype, 'getCities', Object.getOwnPropertyDescriptor(AppController.prototype, 'getCities'));
+Reflect.defineMetadata('design:paramtypes', [AppService], AppController);

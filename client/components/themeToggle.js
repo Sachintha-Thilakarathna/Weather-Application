@@ -20,19 +20,9 @@ function getPreferredTheme() {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState('light');
-  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState(() => getPreferredTheme());
 
   useEffect(() => {
-    const initialTheme = getPreferredTheme();
-    setTheme(initialTheme);
-    document.documentElement.classList.toggle('dark', initialTheme === 'dark');
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
-
     document.documentElement.classList.toggle('dark', theme === 'dark');
 
     try {
@@ -40,7 +30,7 @@ export default function ThemeToggle() {
     } catch {
       // ignore localStorage write errors
     }
-  }, [mounted, theme]);
+  }, [theme]);
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
