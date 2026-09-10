@@ -142,7 +142,7 @@ Visit `http://localhost:3000`, which redirects to `/login`. Sign in with a white
 
 **Test credentials** (from `server/src/auth/auth.service.js`):
 ```
-Email: careers@fidenz.com
+Email: thilakarathnasachintha@gmail.com
 Password: Pass#fidenz
 ```
 
